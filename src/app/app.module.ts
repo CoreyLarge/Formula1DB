@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {DriversComponent} from './drivers/drivers.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
+import { DriverComponent } from './driver/driver.component';
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
   {
     path: 'drivers',
     component: DriversComponent
+  },
+  {
+    path: 'drivers/:id',
+    component: DriverComponent
   }
 ];
 
@@ -24,6 +29,7 @@ const routes = [
     AppComponent,
     DriversComponent,
     HomeComponent,
+    DriverComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes)

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card mb-1">
-          <div class="card-body">
+          <div class="card-body" [routerLink]="['/drivers', driver._id]" style="cursor: pointer">
             {{driver.forename}} {{driver.surname}}
           </div>
         </div>
