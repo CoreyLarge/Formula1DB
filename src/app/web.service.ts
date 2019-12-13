@@ -12,8 +12,8 @@ export class WebService {
   private pDriver = new Subject();
   public driver = this.pDriver.asObservable();
 
-  getDrivers() {
-    return this.http.get(`http://127.0.0.1:5000/drivers`).subscribe(response => {
+  getDrivers(page) {
+    return this.http.get(`http://127.0.0.1:5000/drivers?pn=` + page).subscribe(response => {
       this.pDrivers.next(response);
     });
   }
