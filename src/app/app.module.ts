@@ -8,6 +8,7 @@ import {DriversComponent} from './drivers/drivers.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import { DriverComponent } from './driver/driver.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
     DriversComponent,
     HomeComponent,
     DriverComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes)
