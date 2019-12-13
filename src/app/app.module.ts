@@ -9,6 +9,8 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import { DriverComponent } from './driver/driver.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ConstructorComponent } from './constructor/constructor.component';
+import { TeamComponent } from './team/team.component';
 
 const routes = [
   {
@@ -22,6 +24,14 @@ const routes = [
   {
     path: 'drivers/:id',
     component: DriverComponent
+  },
+  {
+    path: 'constructors',
+    component: ConstructorComponent
+  },
+  {
+    path: 'constructors/:id',
+    component: TeamComponent
   }
 ];
 
@@ -32,6 +42,8 @@ const routes = [
     HomeComponent,
     DriverComponent,
     NavbarComponent,
+    ConstructorComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(routes)

@@ -1,10 +1,10 @@
-<div *ngFor="let driver of webService.drivers | async">
+<div *ngFor="let constructor of webService.constructors | async">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <div class="card mb-1">
-          <div class="card-body" [routerLink]="['/drivers', driver._id]" style="cursor: pointer">
-            {{driver.forename}} {{driver.surname}} {{driver.nationality}}
+          <div class="card-body" [routerLink]="['/constructors', constructor._id]" style="cursor: pointer">
+            {{constructor.name}}
           </div>
         </div>
       </div>
