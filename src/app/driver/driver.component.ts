@@ -13,12 +13,15 @@ export class DriverComponent implements OnInit {
   }
 
   driver = null;
+  races = null;
 
   ngOnInit() {
     console.log(this.route.snapshot.params.id);
     this.webService.getDriver(this.route.snapshot.params.id);
+    this.webService.getRaces(this.route.snapshot.params.id);
     this.webService.driver.subscribe(response => {
       this.driver = response;
+      this.races = response;
     });
   }
 }

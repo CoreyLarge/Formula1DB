@@ -23,3 +23,12 @@
   </div>
 </div>
 
+<div class="container" *ngFor="let races of webService.races | async">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card bg-light mb-3">
+        {{races.name}} {{races.year}}
+      </div>
+    </div>
+  </div>
+</div>

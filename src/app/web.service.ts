@@ -15,6 +15,8 @@ export class WebService {
   public constructors = this.pConstructor.asObservable();
   private pConstructors = new Subject();
   public constructorsId = this.pConstructors.asObservable();
+  private raceinfo = new Subject();
+  public races = this.raceinfo.asObservable();
 
   getDrivers(page) {
     return this.http.get(`http://127.0.0.1:5000/drivers?pn=` + page).subscribe(response => {
@@ -37,6 +39,12 @@ export class WebService {
   getConstructor(id) {
     return this.http.get(`http://127.0.0.1:5000/constructors/` + id).subscribe(response => {
       this.pConstructors.next(response);
+    });
+  }
+
+  getRaces(id) {
+    return this.http.get(`http://127.0.0.1:5000/drivers/` + id + `/races/wins`).subscribe(response => {
+      this.raceinfo.next(response);
     });
   }
 }
