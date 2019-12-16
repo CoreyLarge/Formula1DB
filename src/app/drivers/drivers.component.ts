@@ -13,6 +13,7 @@ export class DriversComponent implements OnInit {
 
   page = 1;
   drivers: any = [];
+  currentpage = this.page;
 
   ngOnInit() {
     if (sessionStorage.page) {
@@ -34,4 +35,57 @@ export class DriversComponent implements OnInit {
       this.webService.getDrivers(this.page);
     }
   }
+
+  page1() {
+    this.page = 1;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page2() {
+    this.page = 2;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page3() {
+    this.page = 3;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page4() {
+    this.page = 4;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page5() {
+    this.page = 5;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page6() {
+    this.page = 6;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page7() {
+    this.page = 7;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page8() {
+    this.page = 8;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page9() {
+    this.page = 9;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
+  page10() {
+    this.page = 10;
+    sessionStorage.page = Number(this.page);
+    this.webService.getDrivers(this.page);
+  }
 }
+
+

@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ConstructorComponent } from './constructor/constructor.component';
 import { TeamComponent } from './team/team.component';
 import { LoginComponent } from './login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes = [
   {
@@ -33,6 +34,10 @@ const routes = [
   {
     path: 'constructors/:id',
     component: TeamComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -48,7 +53,7 @@ const routes = [
     LoginComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, RouterModule.forRoot(routes)
+    BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule
   ],
   providers: [WebService],
   bootstrap: [AppComponent]
