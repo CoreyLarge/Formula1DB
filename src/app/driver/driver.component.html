@@ -1,78 +1,81 @@
 <div class="container" *ngIf="driver !== null">
-  <hr>
-  <div class="row row-margin-bottom">
-    <div class="col-md-5 no-padding lib-item" data-category="view">
-      <div class="lib-panel">
-        <div class="row box-shadow">
-          <div class="col-md-6">
-            <img class="lib-img-show" src={{driver.image}}>
-          </div>
-          <div class="col-md-6">
-            <div class="lib-row lib-header">
-              {{driver.forename}} {{driver.surname}}
-              <div class="lib-header-seperator"></div>
+    <hr>
+    <div class="row row-margin-bottom">
+        <div class="col-md-5 no-padding lib-item" data-category="view">
+            <div class="lib-panel">
+                <div class="row box-shadow">
+                    <div class="col-md-6">
+                        <img class="lib-img-show" src={{driver.image}}>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="lib-row lib-header">
+                            {{driver.forename}} {{driver.surname}}
+                            <div class="lib-header-seperator"></div>
+                        </div>
+                        <div class="lib-row lib-header-seperator">
+                            {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
+                            <button type="button" class="btn btn-outline-success" (click)="webService.addFavourite()">Add driver to favourites</button>
+                            <div class="lib-header-seperator"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="lib-row lib-header-seperator">
-              {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
-              <div class="lib-header-seperator"></div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <div class="container" *ngFor="let races of webService.races | async">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card bg-light mb-3">
-        {{races.name}} {{races.year}}
-      </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card bg-light mb-3">
+                {{races.name}} {{races.year}}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="container" *ngFor="let reviews of webService.userreviews | async">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card bg-light mb-3">
-        {{reviews.name}} {{reviews.review}} {{reviews.rating}}
-      </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card bg-light mb-3">
+                {{reviews.name}} {{reviews.review}} {{reviews.rating}}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <h2>
-        Review this driver
-      </h2>
-      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="name">Reviewers Name</label>
-          <input type="text" id="name" name="name" class="form-control" formControlName="name"[ngClass]="{'error':isInvalid('name')}">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>
+                Review this driver
+            </h2>
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Reviewers Name</label>
+                    <input type="text" id="name" name="name" class="form-control" formControlName="name"
+                           [ngClass]="{'error':isInvalid('name')}">
+                </div>
+                <div class="form-group">
+                    <label for="review">Review of Driver</label>
+                    <input textarea id="review" name="review" class="form-control" formControlName="review"
+                           [ngClass]="{'error':isInvalid('review')}">
+                </div>
+                <div class="form-group">
+                    <label for="rating">Driver rating</label>
+                    <select id="rating" name="rating" class="form-control" formControlName="rating">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </div>
+                <span *ngIf="isIncomplete()">All fields must be filled</span>
+                <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">
+                    Submit Review
+                </button>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="review">Review of Driver</label>
-          <input textarea id="review" name="review" class="form-control" formControlName="review" [ngClass]="{'error':isInvalid('review')}">
-        </div>
-        <div class="form-group">
-          <label for="rating">Driver rating</label>
-          <select id="rating" name="rating" class="form-control" formControlName="rating" >
-            <option value="1">1 star</option>
-            <option value="2">2 stars</option>
-            <option value="3">3 stars</option>
-            <option value="4">4 stars</option>
-            <option value="5">5 stars</option>
-          </select>
-        </div>
-        <span *ngIf="isIncomplete()">All fields must be filled</span>
-        <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">
-          Submit Review
-        </button>
-      </form>
     </div>
-  </div>
 </div>

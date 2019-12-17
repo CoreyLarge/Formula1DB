@@ -11,31 +11,19 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-6">
-    <button class="btn-primary" (click)='previousPage()'>
-      Previous
-    </button>
-  </div>
-  <div class="col-sm-6 text-right">
-    <button class="btn-primary" (click)='nextPage()'>
-      Next
-    </button>
-  </div>
-</div>
 <nav aria-label="Page navigation">
   <ul class="pagination justify-content-center">
     <li class="page-item"><a class="page-link" (click)="previousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="page1()">1</a></li>
-    <li class="page-item"><a class="page-link" (click)="page2()">2</a></li>
-    <li class="page-item"><a class="page-link" (click)="page3()">3</a></li>
-    <li class="page-item"><a class="page-link" (click)="page4()">4</a></li>
-    <li class="page-item"><a class="page-link" (click)="page5()">5</a></li>
-    <li class="page-item"><a class="page-link" (click)="page6()">6</a></li>
-    <li class="page-item"><a class="page-link" (click)="page7()">7</a></li>
-    <li class="page-item"><a class="page-link" (click)="page8()">8</a></li>
-    <li class="page-item"><a class="page-link" (click)="page9()">9</a></li>
-    <li class="page-item"><a class="page-link" (click)="page10()">10</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(1)">1</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(2)">2</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(3)">3</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(4)">4</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(5)">5</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(6)">6</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(7)">7</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(8)">8</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(9)">9</a></li>
+    <li class="page-item"><a class="page-link" (click)="gotopage(10)">10</a></li>
     <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
   </ul>
 </nav>

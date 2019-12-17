@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {WebService} from '../web.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private webService: WebService) {
+  }
+
+  user = null;
 
   ngOnInit() {
+    this.webService.user.subscribe(user => {
+      console.log(user);
+      if (JSON.stringify(user) !== JSON.stringify({})) {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+    });
   }
 
 }

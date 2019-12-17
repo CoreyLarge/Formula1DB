@@ -36,6 +36,7 @@ export class DriverComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.reviewForm.value)
     this.webService.postReview(this.reviewForm.value);
     this.reviewForm.reset();
   }
