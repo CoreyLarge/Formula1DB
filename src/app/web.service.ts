@@ -38,10 +38,13 @@ export class WebService {
 
     driverID;
 
-    getDrivers(page) {
-        return this.http.get(`${this.url}/drivers?pn=` + page).subscribe(response => {
-            this.pDrivers.next(response);
-        });
+    getDrivers(search, page) {
+        if (search.length > 0) {
+
+            return this.http.get(`${this.url}/drivers/search/${search}?pn=${page}`).subscribe(response => {
+                this.pDrivers.next(response);
+            });
+        }
     }
 
     getDriver(id) {
@@ -75,14 +78,14 @@ export class WebService {
         });
     }
 
-    register(register){
-        const{name, email, username, password} = register;
+    register(register) {
+        const {name, email, username, password} = register;
         const rdata = new FormData();
         rdata.append('name', name);
         rdata.append('email', email);
         rdata.append('username', email);
         rdata.append('password', password);
-        return this.http.post(`${this.url}/register`, rdata).toPromise().then(response =>{
+        return this.http.post(`${this.url}/register`, rdata).toPromise().then(response => {
             this.login({username, password});
         });
     }

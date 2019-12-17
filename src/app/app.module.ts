@@ -15,11 +15,13 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 const routes = [
     {path: '', component: HomeComponent},
     {path: 'drivers', component: DriversComponent},
     {path: 'drivers/:id', component: DriverComponent},
+    {path: 'drivers/search/:search', component: DriversComponent},
     {path: 'constructors', component: ConstructorComponent},
     {path: 'constructors/:id', component: TeamComponent},
     {path: 'login', component: LoginComponent},
@@ -39,6 +41,7 @@ const routes = [
         LoginComponent,
         ProfileComponent,
         RegisterComponent,
+        SearchbarComponent,
     ],
     imports: [
         BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule

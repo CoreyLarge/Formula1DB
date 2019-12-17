@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WebService} from '../web.service';
 import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-drivers',
@@ -11,7 +12,7 @@ export class DriversComponent implements OnInit {
 
     searchForm;
 
-    constructor(private webService: WebService, private formBuilder: FormBuilder) {
+    constructor(private webService: WebService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
     }
 
     page = 1;
@@ -19,10 +20,10 @@ export class DriversComponent implements OnInit {
     currentpage = this.page;
 
     ngOnInit() {
-        if (sessionStorage.page) {
-            this.page = sessionStorage.page;
-        }
-        this.webService.getDrivers(this.page);
+        // if (sessionStorage.page) {
+        //     this.page = sessionStorage.page;
+        // }
+        this.webService.getDrivers(this.route.snapshot.params.search, this.page);
     }
 
     onSubmitSearch() {
@@ -33,21 +34,21 @@ export class DriversComponent implements OnInit {
     nextPage() {
         this.page = Number(this.page) + 1;
         sessionStorage.page = Number(this.page);
-        this.webService.getDrivers(this.page);
+        this.webService.getDrivers(this.route.snapshot.params.search, this.page);
     }
 
     previousPage() {
         if (this.page > 1) {
             this.page = Number(this.page) - 1;
             sessionStorage.page = Number(this.page);
-            this.webService.getDrivers(this.page);
+            this.webService.getDrivers(this.route.snapshot.params.search, this.page);
         }
     }
 
     gotopage(page) {
         this.page = page;
         sessionStorage.page = Number(this.page);
-        this.webService.getDrivers(this.page);
+        this.webService.getDrivers(this.route.snapshot.params.search, this.page);
     }
 
     isInvalid(control) {
