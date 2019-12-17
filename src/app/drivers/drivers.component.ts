@@ -16,14 +16,20 @@ export class DriversComponent implements OnInit {
     }
 
     page = 1;
-    drivers: any = [];
+    drivers: any = {};
     currentpage = this.page;
+    pages;
 
     ngOnInit() {
         // if (sessionStorage.page) {
         //     this.page = sessionStorage.page;
         // }
         this.webService.getDrivers(this.route.snapshot.params.search, this.page);
+        this.webService.drivers.subscribe(drivers => {
+            this.drivers = drivers;
+            // @ts-ignore
+            this.pages = Array(drivers.pagecount).fill(0).map((x, i) => i + 1);
+        });
     }
 
     onSubmitSearch() {

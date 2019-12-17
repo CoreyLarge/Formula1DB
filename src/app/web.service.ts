@@ -35,6 +35,9 @@ export class WebService {
 
     private reg = new BehaviorSubject({});
 
+    private favourites = new BehaviorSubject([]);
+    public favourtieDrivers = this.favourites.asObservable();
+
 
     driverID;
 
@@ -148,18 +151,32 @@ export class WebService {
         }
     }
 
-    getFavourites() {
-        return this.http.get(`${this.url}/favourites`).subscribe(response => {
-            // @ts-ignore
-            this.fav.next(response);
-        });
+    getFavourites(token) {
+        // @ts-ignore
+        const t = this.usertoken.getValue().token;
+        if (t) {
+            const headers = {
+                headers: new HttpHeaders({'x-access-token': t})
+            };
+            return this.http.get(`${this.url}/favourites`, headers).subscribe(response => {
+                // @ts-ignore
+                this.fav.next(response);
+            });
+        }
     }
 
     deleteFavourites(id) {
-        return this.http.delete(`${this.url}/favourites/${id}`).subscribe(response => {
-            // @ts-ignore
-            this.fav.next(response);
-        });
+        // @ts-ignore
+        const t = this.usertoken.getValue().token;
+        if (t) {
+            const headers = {
+                headers: new HttpHeaders({'x-access-token': t})
+            };
+            return this.http.delete(`${this.url}/favourites/${id}`, headers).subscribe(response => {
+                // @ts-ignore
+                this.fav.next(response);
+            });
+        }
     }
 
 }

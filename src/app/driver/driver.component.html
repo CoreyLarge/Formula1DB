@@ -9,12 +9,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="lib-row lib-header">
-                            {{driver.forename}} {{driver.surname}}
+                            <h1>{{driver.forename}} {{driver.surname}}</h1>
                             <div class="lib-header-seperator"></div>
                         </div>
                         <div class="lib-row lib-header-seperator">
                             {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
-                            <button type="button" class="btn btn-outline-success" (click)="webService.addFavourite()">Add driver to favourites</button>
+                            <button type="button" class="btn btn-outline-success" (click)="webService.addFavourite()">
+                                Add driver to favourites
+                            </button>
                             <div class="lib-header-seperator"></div>
                         </div>
                     </div>
@@ -24,11 +26,20 @@
     </div>
 </div>
 
-<div class="container" *ngFor="let races of webService.races | async">
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="card bg-light mb-3">
-                {{races.name}} {{races.year}}
+                <div class="card-header">
+                    F1 Driver Wins
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <div class="list-group-item" *ngFor="let races of webService.races | async">
+                            {{races.name}} {{races.year}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

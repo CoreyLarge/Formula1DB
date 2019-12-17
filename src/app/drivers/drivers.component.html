@@ -1,29 +1,21 @@
-<div *ngFor="let driver of webService.drivers | async">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card mb-1">
-          <div class="card-body" [routerLink]="['/drivers', driver._id]" style="cursor: pointer">
-            {{driver.forename}} {{driver.surname}} {{driver.nationality}}
-          </div>
+<div *ngFor="let driver of drivers.data">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mb-1">
+                    <div class="card-body" [routerLink]="['/drivers', driver._id]" style="cursor: pointer">
+                        {{driver.forename}} {{driver.surname}} {{driver.nationality}}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 <nav aria-label="Page navigation">
-  <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="previousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(1)">1</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(2)">2</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(3)">3</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(4)">4</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(5)">5</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(6)">6</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(7)">7</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(8)">8</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(9)">9</a></li>
-    <li class="page-item"><a class="page-link" (click)="gotopage(10)">10</a></li>
-    <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
-  </ul>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" (click)="previousPage()">Previous</a></li>
+        <li class="page-item" *ngFor="let p of pages"><a class="page-link" (click)="gotopage(p)">{{p}}</a>
+        </li>
+        <li class="page-item"><a class="page-link" (click)="nextPage()">Next</a></li>
+    </ul>
 </nav>
