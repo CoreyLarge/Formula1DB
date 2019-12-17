@@ -33,6 +33,9 @@ export class WebService {
     private fav = new BehaviorSubject([]);
     public favdriver = this.fav.asObservable();
 
+    private reg = new BehaviorSubject({});
+
+
     driverID;
 
     getDrivers(page) {
@@ -69,6 +72,18 @@ export class WebService {
     getReviews(id) {
         return this.http.get(`${this.url}/drivers/` + id + `/reviews`).subscribe(response => {
             this.reviews.next(response);
+        });
+    }
+
+    register(register){
+        const{name, email, username, password} = register;
+        const rdata = new FormData();
+        rdata.append('name', name);
+        rdata.append('email', email);
+        rdata.append('username', email);
+        rdata.append('password', password);
+        return this.http.post(`${this.url}/register`, rdata).toPromise().then(response =>{
+            this.login({username, password});
         });
     }
 

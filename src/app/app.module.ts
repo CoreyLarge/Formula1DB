@@ -14,6 +14,7 @@ import {TeamComponent} from './team/team.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes = [
     {path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes = [
     {path: 'constructors', component: ConstructorComponent},
     {path: 'constructors/:id', component: TeamComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'profile', component: ProfileComponent}
+    {path: 'profile', component: ProfileComponent},
+    {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
@@ -36,6 +38,7 @@ const routes = [
         TeamComponent,
         LoginComponent,
         ProfileComponent,
+        RegisterComponent,
     ],
     imports: [
         BrowserModule, HttpClientModule, RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule
