@@ -15,7 +15,7 @@ export class WebService {
                     this.usertoken.next({});
                 }
             }
-        } catch (e){
+        } catch (e) {
             this.usertoken.next({});
         }
     }
@@ -113,7 +113,7 @@ export class WebService {
         data.append('password', password);
         return this.http.post(`${this.url}/login`, data).subscribe(response => {
             this.usertoken.next(response);
-            sessionStorage.setItem("logintoken", JSON.stringify(response));
+            sessionStorage.setItem('logintoken', JSON.stringify(response));
         });
     }
 
@@ -192,5 +192,21 @@ export class WebService {
             });
         }
     }
+
+    deleteReview(id, review_id) {
+        // @ts-ignore
+        const t = this.usertoken.getValue().token;
+        if (t) {
+            const headers = {
+                headers: new HttpHeaders({'x-access-token': t})
+            };
+            return this.http.delete(`${this.url}/drivers/${id}/reviews/${review_id}`, headers).subscribe(response => {
+                // @ts-ignore
+                this.reviews.next(response);
+                this.getReviews(id);
+            });
+        }
+    }
+
 
 }

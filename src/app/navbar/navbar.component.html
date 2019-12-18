@@ -18,7 +18,7 @@
                 <a class="nav-link" [routerLink]="'profile'">My Profile</a>
             </li>
             <li class="nav-item" *ngIf="user !== null">
-                <a class="nav-link" (click)="webService.logout()">Logout</a>
+                <a class="nav-link" [routerLink]="''" (click)="webService.logout()">Logout</a>
             </li>
             <li class="nav-item" *ngIf="user === null">
                 <a class="nav-link" [routerLink]="'login'">Login</a>
