@@ -5,6 +5,19 @@ import {BehaviorSubject, Subject} from 'rxjs';
 @Injectable()
 export class WebService {
     constructor(private http: HttpClient) {
+        try {
+            const localstorage = sessionStorage.getItem('logintoken');
+            if (localstorage.length) {
+                const usr = JSON.parse(localstorage);
+                if (new Date(usr.expiry) > new Date()) {
+                    this.usertoken.next(usr);
+                } else {
+                    this.usertoken.next({});
+                }
+            }
+        } catch (e){
+            this.usertoken.next({});
+        }
     }
 
     private url = `http://127.0.0.1:5000`;
@@ -100,6 +113,7 @@ export class WebService {
         data.append('password', password);
         return this.http.post(`${this.url}/login`, data).subscribe(response => {
             this.usertoken.next(response);
+            sessionStorage.setItem("logintoken", JSON.stringify(response));
         });
     }
 
@@ -112,9 +126,9 @@ export class WebService {
             };
             return this.http.get(`${this.url}/logout`, headers).subscribe(response => {
                 this.usertoken.next({});
+                sessionStorage.clear();
             });
         }
-
     }
 
     postReview(review) {

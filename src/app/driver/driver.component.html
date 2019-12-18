@@ -1,40 +1,44 @@
 <div class="container" *ngIf="driver !== null">
     <hr>
-    <div class="row row-margin-bottom">
-        <div class="col-md-5 no-padding lib-item" data-category="view">
-            <div class="lib-panel">
-                <div class="row box-shadow">
-                    <div class="col-md-6">
-                        <img class="lib-img-show" src={{driver.image}}>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="lib-row lib-header">
-                            <h1>{{driver.forename}} {{driver.surname}}</h1>
-                            <div class="lib-header-seperator"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="no-padding lib-item">
+                <div class="lib-panel">
+                    <div class="row box-shadow">
+                        <div class="col-md-6">
+                            <img class="lib-img-show" src={{driver.image}}>
                         </div>
-                        <div class="lib-row lib-header-seperator">
-                            {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
-                            <button type="button" class="btn btn-outline-success" (click)="webService.addFavourite()">
-                                Add driver to favourites
-                            </button>
-                            <div class="lib-header-seperator"></div>
+                        <div class="col-md-6">
+                            <div class="lib-row lib-header">
+                                <h1>{{driver.forename}} {{driver.surname}}</h1>
+                                <div class="lib-header-seperator"></div>
+                            </div>
+                            <div class="lib-row lib-header-seperator">
+                                {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
+                                <button type="button" class="btn btn-outline-success"
+                                        (click)="webService.addFavourite()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path
+                                            d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+                                    </svg>
+                                    Add driver to favourites
+                                </button>
+                                <div class="lib-header-seperator"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-6">
             <div class="card bg-light mb-3">
                 <div class="card-header">
                     F1 Driver Wins
                 </div>
                 <div class="card-body">
-                    <div class="list-group">
+                    <div class="list-group" >
                         <div class="list-group-item" *ngFor="let races of webService.races | async">
                             {{races.name}} {{races.year}}
                         </div>
@@ -42,26 +46,35 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="container" *ngFor="let reviews of webService.userreviews | async">
-    <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-6">
             <div class="card bg-light mb-3">
-                {{reviews.name}} {{reviews.review}} {{reviews.rating}}
+                <div class="card-header">
+                    Reviews
+                </div>
+                <div class="card-body" *ngFor="let reviews of webService.userreviews | async">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="lib-row lib-header">
+                                {{reviews.name}}
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="lib-row lib-desc">
+                                {{reviews.review}}
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="lib-row lib-header-seperator">
+                                {{reviews.rating}} stars
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
             <h2>
                 Review this driver
             </h2>
-            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="reviewForm" *ngIf="loggedin" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="name">Reviewers Name</label>
                     <input type="text" id="name" name="name" class="form-control" formControlName="name"
@@ -69,8 +82,9 @@
                 </div>
                 <div class="form-group">
                     <label for="review">Review of Driver</label>
-                    <input textarea id="review" name="review" class="form-control" formControlName="review"
-                           [ngClass]="{'error':isInvalid('review')}">
+                    <textarea id="review" name="review" class="form-control" formControlName="review"
+                              [ngClass]="{'error':isInvalid('review')}">
+                    </textarea>
                 </div>
                 <div class="form-group">
                     <label for="rating">Driver rating</label>

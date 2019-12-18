@@ -23,10 +23,10 @@ export class SearchbarComponent implements OnInit {
 
     query() {
         if (this.search.valid) {
-            console.log(this.search)
-            this.router.navigate(['/drivers/search/', this.search.value.search]).then(()=>{
+            console.log(this.search);
+            this.router.navigate(['/drivers/search/', this.search.value.search]).then(() => {
                 this.webService.getDrivers(this.search.value.search, 1);
-            })
+            });
         }
     }
 

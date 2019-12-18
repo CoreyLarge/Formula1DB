@@ -1,47 +1,47 @@
 .header_pic {
-  width: 100%;
+    width: 100%;
 }
 
 .jumbotron {
-  margin-bottom: 0;
-  height: auto;
+    margin-bottom: 0;
+    height: auto;
 }
 
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .section-padding {
-  padding: 60px 0;
+    padding: 60px 0;
 }
 
 .bottom {
-  background-color: #666666;
+    background-color: #666666;
 }
 
 .bottom .copyright {
-  color: #ffffff;
-  font-weight: 600;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .copyright a {
-  color: #ffffff;
-  margin-left: 3px;
-  padding-right: 3px;
+    color: #ffffff;
+    margin-left: 3px;
+    padding-right: 3px;
 }
 
 .bottom p {
-  margin-bottom: 0;
-  line-height: 60px;
-  font-size: 16px;
-  font-weight: 400;
+    margin-bottom: 0;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .copyright p span {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .bottom .copyright p, .bottom .copyright a:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
