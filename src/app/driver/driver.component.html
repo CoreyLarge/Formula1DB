@@ -52,7 +52,7 @@
                 <div class="card-header">
                     Reviews
                 </div>
-                <div class="card-body" *ngFor="let review of driver.reviews">
+                <div class="card-body" *ngFor="let review of webService.userreviews | async" >
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="lib-row lib-header">

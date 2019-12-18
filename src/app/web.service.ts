@@ -37,7 +37,7 @@ export class WebService {
     private raceinfo = new Subject();
     public races = this.raceinfo.asObservable();
 
-    private reviews = new Subject();
+    private reviews = new BehaviorSubject([]);
     public userreviews = this.reviews.asObservable();
 
     private usertoken = new BehaviorSubject({});
@@ -91,6 +91,7 @@ export class WebService {
     getReviews(id) {
         return this.http.get(`${this.url}/drivers/` + id + `/reviews`).subscribe(response => {
             this.reviews.next(response);
+            console.log(response);
         });
     }
 
