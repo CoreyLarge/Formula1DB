@@ -15,16 +15,17 @@
                             </div>
                             <div class="lib-row lib-header-seperator">
                                 {{driver.code}} | {{driver.number}} | {{driver.driverRef}}
-                                <button type="button" class="btn btn-outline-success"
-                                        (click)="webService.addFavourite()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                        <path
-                                            d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
-                                    </svg>
-                                    Add driver to favourites
-                                </button>
+
                                 <div class="lib-header-seperator"></div>
                             </div>
+                            <button type="button" class="btn btn-outline-success"
+                                    (click)="webService.addFavourite()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path
+                                        d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+                                </svg>
+                                Add driver to favourites
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -38,9 +39,9 @@
                     F1 Driver Wins
                 </div>
                 <div class="card-body">
-                    <div class="list-group" >
-                        <div class="list-group-item" *ngFor="let races of webService.races | async">
-                            {{races.name}} {{races.year}}
+                    <div class="list-group">
+                        <div class="list-group-item" *ngFor="let win of wins">
+                            {{win.year}} {{win.name}}
                         </div>
                     </div>
                 </div>
@@ -51,21 +52,21 @@
                 <div class="card-header">
                     Reviews
                 </div>
-                <div class="card-body" *ngFor="let reviews of webService.userreviews | async">
+                <div class="card-body" *ngFor="let review of driver.reviews">
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="lib-row lib-header">
-                                {{reviews.name}}
+                                {{review.name}}
                             </div>
                         </div>
                         <div class="list-group-item">
                             <div class="lib-row lib-desc">
-                                {{reviews.review}}
+                                {{review.review}}
                             </div>
                         </div>
                         <div class="list-group-item">
                             <div class="lib-row lib-header-seperator">
-                                {{reviews.rating}} stars
+                                {{review.rating}} stars
                             </div>
                         </div>
                     </div>

@@ -22,6 +22,7 @@ export class DriverComponent implements OnInit {
 
     driver = null;
     races = null;
+    wins = null;
     reviews = null;
     loggedin;
 
@@ -30,9 +31,13 @@ export class DriverComponent implements OnInit {
         this.webService.getDriver(this.route.snapshot.params.id);
         this.webService.getRaces(this.route.snapshot.params.id);
         this.webService.getReviews(this.route.snapshot.params.id);
+        this.webService.races.subscribe(response => {
+            console.log(response);
+            this.wins = response;
+        });
         this.webService.driver.subscribe(response => {
             this.driver = response;
-            this.races = response;
+
         });
         this.webService.user.subscribe(user => {
             this.loggedin = (JSON.stringify(user) !== JSON.stringify({}));
