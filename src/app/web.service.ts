@@ -90,8 +90,8 @@ export class WebService {
 
     getReviews(id) {
         return this.http.get(`${this.url}/drivers/` + id + `/reviews`).subscribe(response => {
+            // @ts-ignore
             this.reviews.next(response);
-            console.log(response);
         });
     }
 

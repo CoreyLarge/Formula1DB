@@ -63,7 +63,7 @@
                             <div class="lib-row lib-desc">
                                 {{review.review}}
                             </div>
-                            <button type="button" class="btn btn-circle btn-lg float-right"
+                            <button type="button" *ngIf="loggedin" class="btn btn-circle btn-lg float-right"
                                     (click)="webService.deleteReview(driver._id, review._id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                                     <path
