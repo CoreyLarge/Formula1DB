@@ -53,6 +53,7 @@ export class WebService {
 
 
     driverID;
+    reviewID;
 
     getDrivers(search, page) {
         if (search.length > 0) {
@@ -73,6 +74,7 @@ export class WebService {
     getConstructors(page) {
         return this.http.get(`${this.url}/constructors?pn=` + page).subscribe(response => {
             this.pConstructor.next(response);
+
         });
     }
 
@@ -92,15 +94,17 @@ export class WebService {
         return this.http.get(`${this.url}/drivers/` + id + `/reviews`).subscribe(response => {
             // @ts-ignore
             this.reviews.next(response);
+            this.reviewID = id;
         });
     }
+
 
     register(register) {
         const {name, email, username, password} = register;
         const rdata = new FormData();
         rdata.append('name', name);
         rdata.append('email', email);
-        rdata.append('username', email);
+        rdata.append('username', username);
         rdata.append('password', password);
         return this.http.post(`${this.url}/register`, rdata).toPromise().then(response => {
             this.login({username, password});
@@ -142,9 +146,31 @@ export class WebService {
         const todayDate = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate();
         postData.append('date', todayDate);
 
-        return this.http.post(`${this.url}/drivers/` + this.driverID + `/reviews`, postData).subscribe(response => {
-            this.getReviews(this.driverID);
+        // @ts-ignore
+        const t = this.usertoken.getValue().token;
+        if (t) {
+            const headers = {
+                headers: new HttpHeaders({'x-access-token': t})
+            };
+
+            return this.http.post(`${this.url}/drivers/` + this.driverID + `/reviews`, postData, headers).subscribe(response => {
+                this.getReviews(this.driverID);
+            });
+        }
+    }
+
+    editReview(id, review) {
+        const postData = new FormData();
+        postData.append('name', review.name);
+        postData.append('review', review.review);
+        postData.append('rating', review.rating);
+        // @ts-ignore
+        return this.http.post(`${this.url}/drivers/` + this.driverID + `/reviews/` + this.reviewID, postData).subscribe(response => {
+            // @ts-ignore
+            this.reviews.next(response);
+            this.getReviews(id);
         });
+
     }
 
     postSearch(search) {
@@ -208,6 +234,4 @@ export class WebService {
             });
         }
     }
-
-
 }

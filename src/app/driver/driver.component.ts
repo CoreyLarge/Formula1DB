@@ -11,6 +11,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 export class DriverComponent implements OnInit {
 
     reviewForm;
+    editReview;
 
     constructor(private webService: WebService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
         this.reviewForm = formBuilder.group({
@@ -48,6 +49,10 @@ export class DriverComponent implements OnInit {
         console.log(this.reviewForm.value);
         this.webService.postReview(this.reviewForm.value);
         this.reviewForm.reset();
+    }
+
+    onEdit() {
+
     }
 
     isInvalid(control) {
