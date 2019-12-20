@@ -159,18 +159,23 @@ export class WebService {
         }
     }
 
-    editReview(id, review) {
-        const postData = new FormData();
-        postData.append('name', review.name);
-        postData.append('review', review.review);
-        postData.append('rating', review.rating);
-        // @ts-ignore
-        return this.http.post(`${this.url}/drivers/` + this.driverID + `/reviews/` + this.reviewID, postData).subscribe(response => {
-            // @ts-ignore
-            this.reviews.next(response);
-            this.getReviews(id);
-        });
+    editReview(review, review_id) {
+        const postEditData = new FormData();
+        postEditData.append('editname', review.editname);
+        postEditData.append('editreview', review.editreview);
+        postEditData.append('editrating', review.editrating);
 
+        // @ts-ignore
+        const t = this.usertoken.getValue().token;
+        if (t) {
+            const headers = {
+                headers: new HttpHeaders({'x-access-token': t})
+            };
+
+            return this.http.put(`${this.url}/drivers/` + this.driverID + `/reviews/` + review_id, postEditData, headers).subscribe(response => {
+                this.getReviews(this.driverID);
+            });
+        }
     }
 
     postSearch(search) {

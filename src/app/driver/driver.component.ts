@@ -12,6 +12,8 @@ export class DriverComponent implements OnInit {
 
     reviewForm;
     editReview;
+    showEdit = false;
+    editreviewid = null;
 
     constructor(private webService: WebService, private route: ActivatedRoute, private formBuilder: FormBuilder) {
         this.reviewForm = formBuilder.group({
@@ -19,8 +21,14 @@ export class DriverComponent implements OnInit {
             review: ['', Validators.required],
             rating: 5
         });
+        this.editReview = formBuilder.group({
+            editname: ['', Validators.required],
+            editreview: ['', Validators.required],
+            editrating: 5
+        });
     }
 
+    editreviewval = false;
     driver = null;
     races = null;
     wins = null;
@@ -52,6 +60,10 @@ export class DriverComponent implements OnInit {
     }
 
     onEdit() {
+        console.log(this.editReview.value)
+        this.webService.editReview(this.editReview.value, this.editreviewid);
+        this.showEdit = false;
+
 
     }
 
