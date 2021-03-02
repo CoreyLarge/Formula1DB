@@ -2,12 +2,12 @@
   "name": "full-stack",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "../node_modules/.bin/ng",
+    "start": "../node_modules/.bin/ng serve",
+    "build": "../node_modules/.bin/ng build",
+    "test": "../node_modules/.bin/ng test",
+    "lint": "../node_modules/.bin/ng lint",
+    "e2e": "../node_modules/.bin/ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -25,13 +25,13 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.17",
+    "@angular-devkit/build-angular": "^0.803.29",
     "@angular/cli": "~8.3.17",
     "@angular/compiler-cli": "~8.2.13",
     "@angular/language-service": "~8.2.13",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
